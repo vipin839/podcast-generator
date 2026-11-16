@@ -1,6 +1,9 @@
 import yaml
 import xml.etree.ElementTree as xml_tree
 
+xml_tree.register_namespace('itunes', 'http://www.itunes.com/dtds/podcast-1.0.dtd')
+xml_tree.register_namespace('content', 'http://purl.org/rss/1.0/modules/content/')
+
 with open('feed.yaml', 'r') as file:
     yaml_data = yaml.safe_load(file)
 
@@ -30,9 +33,7 @@ for item in yaml_data['item']:
     xml_tree.SubElement(item_element, 'description').text = item['description']
     xml_tree.SubElement(item_element, 'itunes:duration').text = item['duration']
     xml_tree.SubElement(item_element, 'pubDate').text = item['published']
-    xml_tree.SubElement(item_element, 'title').text = item['title']
-
-    enclosure = xml_tree.SubElement(item_element, 'ecnlosure', {
+    xml_tree.SubElement(item_element, 'enclosure', {
         'url': link_prefix + item['file'],
         'type': 'audio/mpeg',
         'length': item['length']
