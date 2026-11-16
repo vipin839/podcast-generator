@@ -1,4 +1,4 @@
-name: "Podcast Generator"
+name: "Podcast Generator Action"
 author: "Vipin"
 description: "Generate a feed for a podcast from YAML file"
 runs:
@@ -9,10 +9,10 @@ branding:
   color: "red"
 inputs:
   email:
-    description: The commiter's email address
-    required: true
-    default: "${{ github.actor }}@localhost"
+    description: The committer's email address
+    required: false
+    default: "github-actions[bot]@users.noreply.github.com"
   name:
-    description: The commiter's name
-    required: true
-    default: "${{ github.actor }}"
+    description: The committer's name
+    required: false
+    default: "github-actions[bot]"
